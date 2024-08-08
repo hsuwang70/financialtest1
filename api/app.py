@@ -12,7 +12,7 @@ request_methods = ["POST"]
 
 
 def run(playwright: Playwright, request_data) -> None:
-    browser = playwright.chromium.launch(executablePath='/home/runner/.cache/ms-playwright/chromium-1124/chrome-linux/chrome',headless=True)
+    browser = playwright.chromium.launch(executable_path='/home/runner/.cache/ms-playwright/chromium-1124/chrome-linux/chrome',headless=True)
     context = browser.new_context()
     # 開啟新的頁面
     page = context.new_page()
