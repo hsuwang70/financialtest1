@@ -22,3 +22,4 @@ jobs:
       env:
         # This might depend on your test-runner
         PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+        PLAYWRIGHT_CHROMIUM_PATH: /home/runner/.cache/ms-playwright/chromium-1124/chrome-linux/chrome
