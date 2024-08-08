@@ -1,13 +1,16 @@
 name: Playwright Tests
 on:
-  deployment_status:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    if: github.event.deployment_status.state == 'success'
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
@@ -17,8 +20,10 @@ jobs:
         pip install -r requirements.txt
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
-    - name: Run tests
-      run: pytest
-      env:
-        # This might depend on your test-runner
-        PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+    - name: Run your tests
+      run: pytest --tracing=retain-on-failure
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-traces
+        path: test-results/
