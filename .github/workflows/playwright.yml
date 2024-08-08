@@ -21,4 +21,4 @@ jobs:
       run: pytest
       env:
         # This might depend on your test-runner
-        PLAYWRIGHT_TEST_BASE_URL: https://financialtest1-git-main-hsuwang70s-projects.vercel.app/getreport
+        PLAYWRIGHT_TEST_BASE_URL: https://financialtest1-git-main-hsuwang70s-projects.vercel.app
